@@ -16,17 +16,16 @@ func main() {
 	}()
 	for {
 		select {
-		case <- ticker :
+		case <-ticker:
+			log.Print("Sending Notification.")
 			err := beeep.Notify("Check Your Posture", "Look Away for 20 seconds", "posture.png")
 			if err != nil {
 				log.Panic(err)
 			}
-		case <- doneChan:
+		case <-doneChan:
 			log.Print("Timer Stopped")
 			return
 		}
 	}
-
-
 
 }
